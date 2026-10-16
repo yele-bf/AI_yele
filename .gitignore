@@ -24,3 +24,6 @@ dataset/
 *.code-workspace
 .vscode/
 .idea/
+
+# Référence V11 du garde-fou : doit rester versionnée malgré la règle *.json
+!docs/items-v11.json
