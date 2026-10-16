@@ -61,33 +61,3 @@ mise en place du garde-fou, dont les commits ne respectent pas encore le §2.
 | ISS-10 | Historique — P2 | SAWADOGO Hassan Achraf Ammar | Valide |
 | ISS-11 | Dashboard / Carte — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
 | ISS-12 | Paramètres — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
-
-## Suivi des 25 items V11 (une ligne par Sous-ID — référence du garde-fou §5)
-
-| Sous-ID | Intitulé (V11) | Owner (classeur) | Statut classeur |
-|---|---|---|---|
-| IMP-01 | Consommation data — P3 | COMPAORE Bobodo Kévin Aymar | Valide |
-| IMP-02 | Paramètres — P3 | NANA Amoin Agnès / Cissé Aboubacar Sidiki | Valide |
-| IMP-03 | Compte utilisateur — P3 | SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam | Transmis |
-| IMP-04 | Permissions — P3 | COMPAORE Bobodo Kévin Aymar | Valide |
-| IMP-05 | Échelle de score — P2 | TRAORE Abdoulaye / KIEMA François | Valide |
-| IMP-06 | Référentiel ARCEP — P2 | NIKIEMA Abdoul Fatahou / NONGUIERMA WENDINSOO LEONEL | Valide |
-| IMP-07 | Débit / Latence — P2 | TRAORE Oumou Kal / Ilboudo Wendpagnagdé Elsa Fleur | En cours |
-| IMP-08 | Consommation data — P3 | COMPAORE Bobodo Kévin Aymar | Valide |
-| IMP-09 | Comparaison — P3 | SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam | Transmis |
-| IMP-10 | Dashboard / Carte — P3 | SAWADOGO Wend-kuni Cédric / KOUNANGA Benoit / ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ | Valide |
-| IMP-11 | Données / Export — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
-| IMP-12 | Échelle de score — P2 | TRAORE Abdoulaye / KIEMA François | Valide |
-| IMP-13 | Identification appareil — P3 | COMPAORE Bobodo Kévin Aymar | Valide |
-| ISS-01 | Mesures radio — P1 | SAWADOGO Hassan Achraf Ammar | Valide |
-| ISS-02 | Identification réseau — P1 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | Valide |
-| ISS-03 | Identification réseau — P1 | SAWADOGO Hassan Achraf Ammar | Valide |
-| ISS-04 | Serveur — P1 | KOHOUN Damou Daniel / TAMINI Heremave | Valide |
-| ISS-05 | Comparaison — P1 | ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ | Valide |
-| ISS-06 | Débit / Latence — P2 | Wangraoua Aicha Bénédicte Flore Myriam / SAWADOGO Sutongnoma Saturnin | Valide |
-| ISS-07 | Streaming — P2 | SAWADOGO Hassan Achraf Ammar | Valide |
-| ISS-08 | Synchronisation — P2 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | Valide |
-| ISS-09 | GPS — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
-| ISS-10 | Historique — P2 | SAWADOGO Hassan Achraf Ammar | Valide |
-| ISS-11 | Dashboard / Carte — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
-| ISS-12 | Paramètres — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
