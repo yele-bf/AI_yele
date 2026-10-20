@@ -1,19 +1,16 @@
-# CODEOWNERS — socle YELE (organisation yele-bf)
+# CODEOWNERS — yele-bf/AI_yele
 #
-# Rôle actuel : **indicatif**. La règle de merge est « 1 review d'un membre
-# quelconque » (CONTRIBUTING §1.2) : aucune review CODEOWNERS n'est imposée,
-# ces lignes ne bloquent donc rien. Elles servent de référence de périmètre.
+# Rôle : **indicatif** (CONTRIBUTING §1.4). La règle de merge reste « 1 review
+# d'un membre quelconque » + checks `guard`/`build` verts : ces lignes ne
+# bloquent rien, elles désignent le reviewer naturel de chaque périmètre.
 #
-# Les pseudos des agents seront ajoutés au fur et à mesure des invitations :
-# GitHub ignore — et signale — un pseudo qui n'est pas encore collaborateur,
-# on n'inscrit donc que des comptes réellement invités.
+# Aucun Sous-ID du classeur V14 ne cible ce dépôt (0 issue) : le service IA
+# reste sous la responsabilité du porteur tant qu'un item ne lui est pas
+# rattaché.
 
 # Propriétaire par défaut : le porteur du projet.
 *                       @KikaiNoKami
 
-# Périmètres à compléter avec les agents concernés, exemple :
-#
-# mobilefront (app Flutter) :  /lib/  /test/  /android/
-# mobiletest (backend Go)   :  /results/  /database/  /web/  /config/
-# New_web (dashboard)       :  /js/  /css/  /index.html
-# AI_yele (service IA)      :  /*.py
+/*.py                   @KikaiNoKami
+/scripts/               @KikaiNoKami
+/docs/                  @KikaiNoKami

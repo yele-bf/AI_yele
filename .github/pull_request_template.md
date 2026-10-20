@@ -1,6 +1,6 @@
-## Sous-ID V11
+## Sous-ID V14
 
-`IMP-xx` / `ISS-xx` → <!-- doit exister dans docs/items-v11.json -->
+`IMP-xx` / `ISS-xx` → <!-- doit exister dans docs/items-v14.json -->
 
 Titre de la PR = même format que le commit : `<type>(<SOUS-ID>): <descriptif>`
 

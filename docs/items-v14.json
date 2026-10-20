@@ -1,0 +1,742 @@
+{
+  "source": {
+    "classeur": "Cahier de charges_APP & Dashboard_22 Agents MTDPCE_Chantier C2 nPerf_V14_19.10.2026.xlsx",
+    "onglets": [
+      "Completion Correct. & Amelior.",
+      "Cahier des charges",
+      "Analyse & Planning"
+    ],
+    "extraitLe": "2026-10-20",
+    "remarque": "V14 = V11 + IMP-14 (conditions d'utilisation, P3, mobilefront) + IMP-15 (prévision réseau, P1, New_web). 27 items."
+  },
+  "items": [
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "IMP",
+      "sousId": "IMP-01",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Consommation data",
+      "constat": "La quantité de données consommées pendant les mesures n’est pas affichée.",
+      "impact": "Difficulté à suivre la consommation de forfait data.",
+      "solution": "Ajouter la consommation de données par test.",
+      "critere": "La consommation est affichée en Mo/Go à la fin de chaque mesure et disponible dans l’historique.",
+      "methodeTest": "Réaliser plusieurs tests et comparer la consommation affichée avec celle du téléphone/opérateur.",
+      "facilite": "2. Moyen",
+      "intitule": "Consommation data par test absente",
+      "jours": 2,
+      "jours20": 2.4,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "APK réel (conso data)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "IMP",
+      "sousId": "IMP-04",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Permissions",
+      "constat": "Les permissions accordées à l’application ne sont pas centralisées dans les réglages.",
+      "impact": "Manque de visibilité sur les autorisations nécessaires.",
+      "solution": "Ajouter un écran de consultation des permissions et de leur état.",
+      "critere": "Les permissions nécessaires et leur état sont clairement affichés.",
+      "methodeTest": "Accorder/refuser les permissions puis vérifier leur état dans l’application.",
+      "facilite": "1. Facile",
+      "intitule": "Pas d'écran centralisé des permissions",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V1 Quick wins",
+      "validation": "Chrome + APK",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "IMP",
+      "sousId": "IMP-08",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Consommation data",
+      "constat": "Pas de suivi global de la consommation data, pas de seuil mensuel configurable ni d'affichage du débit en temps réel dans la barre d'état/les notifications.",
+      "impact": "Difficulté à maîtriser le forfait data et à suivre le débit en continu, comme le fait nPerf.",
+      "solution": "Ajouter un compteur de consommation cumulée, un seuil mensuel configurable avec alerte, et un moniteur de débit en temps réel (barre d'état / notification).",
+      "critere": "La consommation cumulée est affichée, le dépassement du seuil déclenche une alerte et le débit en direct est visible.",
+      "methodeTest": "Effectuer plusieurs tests, simuler le dépassement de seuil et vérifier l'alerte et l'affichage temps réel.",
+      "facilite": "3. Difficile",
+      "intitule": "Suivi conso + seuil mensuel + débit temps réel absents",
+      "jours": 3,
+      "jours20": 3.6,
+      "vague": "V4 Métriques & score",
+      "validation": "APK réel (notifications)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "IMP",
+      "sousId": "IMP-13",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Identification appareil",
+      "constat": "Pas d'identifiant d'appareil stable et anonymisé (l'app n'envoie que le modèle de l'appareil).",
+      "impact": "Suivi longitudinal des mesures par appareil impossible sans compte utilisateur, et données privées non protégées.",
+      "solution": "Générer un UUID d'appareil anonymisé et stable, sans jamais transmettre de donnée privée (comme nPerf).",
+      "critere": "Chaque appareil possède un UUID stable et anonyme, sans donnée personnelle transmise.",
+      "methodeTest": "Réinstaller l'application et vérifier que l'UUID reste stable et unique.",
+      "facilite": "1. Facile",
+      "intitule": "Pas d'UUID d'appareil anonymisé et stable",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V1 Quick wins",
+      "validation": "Chrome/APK (réinstallation)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "NANA Amoin Agnès / Cissé Aboubacar Sidiki",
+      "id": "IMP",
+      "sousId": "IMP-02",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Paramètres",
+      "constat": "Les options de configuration peuvent être enrichies (FAQ, Contactez-nous, etc).",
+      "impact": "Personnalisation limitée.",
+      "solution": "Enrichir le menu de configuration en intégrant des paramètres techniques et d'assistance fonctionnels.",
+      "critere": "Chaque option est modifiable et son changement produit l’effet attendu.",
+      "methodeTest": "Tester individuellement chaque paramètre.",
+      "facilite": "3. Difficile",
+      "intitule": "Options absentes",
+      "jours": 3.5,
+      "jours20": 4.2,
+      "vague": "V6 Évolutions lourdes",
+      "validation": "Local (Chrome)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SANOU Zossoun Aristide Daouda",
+      "id": "IMP",
+      "sousId": "IMP-14",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Condition d'utilisation",
+      "constat": "Page de politique et de condition d'utilisation a la premiere ouverture de l'application apk sur android",
+      "impact": "Aucun avertissement sur l'utilisation de l'application mobile Yele, sa politique d'usage ou la collecte de données.",
+      "solution": "Ajouter un écran au premier lancement pour faire accepter obligatoirement les conditions d'utilisation.",
+      "critere": "Premiere ouverture de lapplication montre les condition d'utilisation de yele",
+      "methodeTest": "Réinstaller l'application : vérifier l'acceptation obligatoire de la politique au premier lancement, puis son absence aux ouvertures suivantes.",
+      "facilite": "1. Facile",
+      "intitule": "Page de politique et de condition d'utilisation a la premiere ouverture de l'application apk sur android",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V1 Quick wins",
+      "validation": "Chrome + APK",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SANOU Zossoun Aristide Daouda",
+      "id": "IMP",
+      "sousId": "IMP-15",
+      "priorite": "P1",
+      "categorie": "Amélioration",
+      "sousCategorie": "Prevision reseau",
+      "constat": "Prevision de la qualite du reseau en fonction des facteurs tel que le relief, la meteo, les frequences, etc",
+      "impact": "Les performances des réseaux sont principalement dégradées par la météo sur les hautes fréquences, les obstacles du relief, les limites de portée des fréquences élevées et la saturation liée à la population.",
+      "solution": "L'architecture doit intégrer les modèles de l'UIT-R, exploiter la modulation adaptative, densifier les zones à forte charge et sécuriser l'autonomie électrique des sites.",
+      "critere": "Les bilans de liaison doivent être conformes, un débit minimal garanti sous forte charge, et la continuité de service assurée face aux perturbations.",
+      "methodeTest": "La validation s'effectue par des simulations numériques des modèles de propagation et des tests de qualité de service (indicateurs radio et débit).",
+      "facilite": "3. Difficile",
+      "intitule": "Prevision de la qualite du reseau en fonction des facteurs tel que le relief, la meteo, les frequences, etc",
+      "jours": 7,
+      "jours20": 8.4,
+      "vague": "V6 Évolutions lourdes",
+      "validation": "Dashboard",
+      "depots": [
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/New_web"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam",
+      "id": "IMP",
+      "sousId": "IMP-03",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Compte utilisateur",
+      "constat": "Aucun espace clairement identifié pour la gestion d’un compte client/utilisateur.",
+      "impact": "Difficulté à associer les données à un utilisateur et à assurer leur continuité.",
+      "solution": "Ajouter une gestion de compte : création, connexion, déconnexion et gestion du profil.",
+      "critere": "Un utilisateur peut créer/se connecter à son compte et retrouver ses données associées.",
+      "methodeTest": "Créer plusieurs comptes et vérifier l’isolation des historiques.",
+      "facilite": "3. Difficile",
+      "intitule": "Comptes utilisateurs absents (isolation des historiques)",
+      "jours": 5,
+      "jours20": 6,
+      "vague": "V6 Évolutions lourdes",
+      "validation": "Local (backend + app)",
+      "depots": [
+        "mobiletest",
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam",
+      "id": "IMP",
+      "sousId": "IMP-09",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Comparaison",
+      "constat": "Aucun baromètre « mon résultat vs autres utilisateurs / fournisseurs », contrairement à nPerf.",
+      "impact": "Manque de repère pour situer sa connexion par rapport aux autres utilisateurs et opérateurs.",
+      "solution": "Ajouter un baromètre temps réel comparant le résultat aux autres utilisateurs et par opérateur.",
+      "critere": "Le baromètre affiche la position relative du résultat par rapport aux autres.",
+      "methodeTest": "Réaliser un test et vérifier la position du résultat dans le baromètre.",
+      "facilite": "2. Moyen",
+      "intitule": "Pas de baromètre de comparaison (vs autres)",
+      "jours": 2.5,
+      "jours20": 3,
+      "vague": "V5 Dashboard & référentiel",
+      "validation": "Local + données multi-utilisateurs",
+      "depots": [
+        "mobiletest",
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SAWADOGO Wend-kuni Cédric / KOUNANGA Benoit / ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ",
+      "id": "IMP",
+      "sousId": "IMP-10",
+      "priorite": "P3",
+      "categorie": "Amélioration",
+      "sousCategorie": "Dashboard / Carte",
+      "constat": "Le dashboard ne propose que la couverture et la heatmap, pas de couche « carte de débit » ni de « carte 5G » dédiée, comme nPerf.",
+      "impact": "Lecture moins fine de la qualité (débit) et de la couverture 5G.",
+      "solution": "Ajouter des couches cartographiques « débit » et « 5G » sélectionnables.",
+      "critere": "Les couches débit et 5G sont sélectionnables et affichent les données correspondantes.",
+      "methodeTest": "Basculer entre les couches et vérifier le rendu.",
+      "facilite": "2. Moyen",
+      "intitule": "Pas de cartes « débit » et « 5G »",
+      "jours": 1.5,
+      "jours20": 1.8,
+      "vague": "V5 Dashboard & référentiel",
+      "validation": "Dashboard local",
+      "depots": [
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/New_web"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël",
+      "id": "ISS",
+      "sousId": "ISS-08",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Synchronisation",
+      "constat": "Les données mettent du temps à apparaître sur le Dashboard après une mesure.",
+      "impact": "Difficulté à suivre les mesures en quasi temps réel.",
+      "solution": "Optimiser la transmission, le traitement et la synchronisation des données.",
+      "critere": "Les données apparaissent dans le délai cible défini.",
+      "methodeTest": "Réaliser une mesure et mesurer le délai entre sa fin sur le téléphone et son apparition sur le Dashboard.",
+      "facilite": "2. Moyen",
+      "intitule": "Synchronisation lente vers le Dashboard",
+      "jours": 1.5,
+      "jours20": 1.8,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "Local (backend + dashboard)",
+      "depots": [
+        "mobiletest",
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/New_web"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "IMP",
+      "sousId": "IMP-11",
+      "priorite": "P2",
+      "categorie": "Amélioration",
+      "sousCategorie": "Données / Export",
+      "constat": "Aucun export des données brutes (CSV/JSON) depuis le dashboard ou l'API.",
+      "impact": "Gêne la campagne comparative nPerf vs YELE et les livrables ARCEP.",
+      "solution": "Ajouter un export des mesures au format CSV/JSON depuis le dashboard ou l'API.",
+      "critere": "Un bouton exporte les mesures filtrées au format CSV/JSON.",
+      "methodeTest": "Exporter un jeu de mesures et contrôler le contenu du fichier.",
+      "facilite": "1. Facile",
+      "intitule": "Pas d'export des données (CSV/JSON)",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V1 Quick wins",
+      "validation": "Local (API + dashboard)",
+      "depots": [
+        "mobiletest",
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/New_web"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "ISS",
+      "sousId": "ISS-09",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "GPS",
+      "constat": "Les tests doivent etre empêchés lorsque la localisation est désactivée.",
+      "impact": "Cas echeant rend inutile les tests realise sans GPS active.",
+      "solution": "Empecher de ppuvoir effectuer les tests sans avoir active le GPS du telephone.",
+      "critere": "Si le GPS est désactivé, les tests sont bloqués.",
+      "methodeTest": "Désactiver/activer le GPS et faire un teste de mesure.",
+      "facilite": "1. Facile",
+      "intitule": "Tests non bloqués quand le GPS est désactivé",
+      "jours": 0.5,
+      "jours20": 0.6,
+      "vague": "V1 Quick wins",
+      "validation": "APK réel (GPS off)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "ISS",
+      "sousId": "ISS-11",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Dashboard / Carte",
+      "constat": "Le bouton « Localisez-moi » ne fait pas apparaître de pin sur la carte.",
+      "impact": "Difficulté à visualiser sa position.",
+      "solution": "Ajouter un marqueur de position lors de l’utilisation de la fonction.",
+      "critere": "Un marqueur apparaît à la position GPS actuelle.",
+      "methodeTest": "Activer la fonction à plusieurs endroits et vérifier la position du marqueur.",
+      "facilite": "1. Facile",
+      "intitule": "« Localisez-moi » sans marqueur sur la carte",
+      "jours": 0.5,
+      "jours20": 0.6,
+      "vague": "V1 Quick wins",
+      "validation": "Dashboard local (GPS)",
+      "depots": [
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/New_web"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "COMPAORE Bobodo Kévin Aymar",
+      "id": "ISS",
+      "sousId": "ISS-12",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Paramètres",
+      "constat": "Plusieurs paramètres sont impossibles à modifier depuis Réglages (Langue, Test par defaut au demarrage, Unite de debit et Style de fond).",
+      "impact": "L’utilisateur ne peut pas personnaliser le fonctionnement de l’application.",
+      "solution": "Rendre les paramètres fonctionnels et persistants.",
+      "critere": "Chaque paramètre modifié est enregistré et appliqué.",
+      "methodeTest": "Modifier chaque option, fermer/réouvrir l’application puis vérifier sa conservation.",
+      "facilite": "2. Moyen",
+      "intitule": "Réglages non modifiables / non persistants",
+      "jours": 2.5,
+      "jours20": 3,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "Local (Chrome)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "NIKIEMA Abdoul Fatahou / NONGUIERMA WENDINSOO LEONEL",
+      "id": "IMP",
+      "sousId": "IMP-06",
+      "priorite": "P2",
+      "categorie": "Amélioration",
+      "sousCategorie": "Référentiel ARCEP",
+      "constat": "Les seuils de référence ARCEP ne sont pas intégrés au scoring Navigation/Streaming.",
+      "impact": "Le score ne reflète pas nécessairement le référentiel attendu.",
+      "solution": "Intégrer les seuils ARCEP validés dans les algorithmes de scoring.",
+      "critere": "Pour chaque niveau de performance, le score obtenu correspond aux seuils validés.",
+      "methodeTest": "Utiliser des valeurs situées de part et d’autre de chaque seuil et vérifier le score généré.",
+      "facilite": "3. Difficile",
+      "intitule": "Seuils ARCEP hors scoring Navigation/Streaming",
+      "jours": 2.5,
+      "jours20": 3,
+      "vague": "V5 Dashboard & référentiel",
+      "validation": "Local (jeux de valeurs autour des seuils)",
+      "depots": [
+        "mobilefront",
+        "mobiletest"
+      ],
+      "push": [
+        "yele-bf/mobilefront",
+        "yele-bf/mobiletest"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SANOU Zossoun Aristide Daouda / TRAORE Oumou Kal / Ilboudo Wendpagnagdé Elsa Fleur",
+      "id": "IMP",
+      "sousId": "IMP-07",
+      "priorite": "P2",
+      "categorie": "Amélioration",
+      "sousCategorie": "Débit / Latence",
+      "constat": "La perte de paquets (packet loss) n'est pas mesurée, alors que nPerf l'affiche avec le ping et le jitter.",
+      "impact": "Analyse de la qualité de service incomplète (la perte de paquets explique des ralentissements malgré un bon débit).",
+      "solution": "Mesurer et afficher le pourcentage de perte de paquets pendant le test de latence.",
+      "critere": "Le pourcentage de paquets perdus est affiché dans le résultat et l'historique.",
+      "methodeTest": "Réaliser des tests sur réseau congestionné et comparer la valeur avec nPerf.",
+      "facilite": "2. Moyen",
+      "intitule": "Perte de paquets (packet loss) non mesurée",
+      "jours": 1.5,
+      "jours20": 1.8,
+      "vague": "V4 Métriques & score",
+      "validation": "Local + APK (ping)",
+      "depots": [
+        "mobilefront",
+        "mobiletest"
+      ],
+      "push": [
+        "yele-bf/mobilefront",
+        "yele-bf/mobiletest"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SAWADOGO Hassan Achraf Ammar",
+      "id": "ISS",
+      "sousId": "ISS-07",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Streaming",
+      "constat": "Le test vidéo affiche mais n'effectue pas les mesures pour toutes les resolutions (720p, 1080p et 2160p).",
+      "impact": "Impossible d’évaluer la qualité de service sur tous les scénari/résolutions.",
+      "solution": "Intégrer le scénario de test vidéo pour toutes les resolutions a la fois.",
+      "critere": "Un test de streaming est exécuté et son résultat est enregistré.",
+      "methodeTest": "Réaliser un test streaming et vérifier la présence et l’enregistrement de tous les scénari (720p, 1080p et 2160p).",
+      "facilite": "2. Moyen",
+      "intitule": "Test streaming simultane (720p, 1080p et 2160p) manquant",
+      "jours": 1.5,
+      "jours20": 1.8,
+      "vague": "V2 Réseau app (terrain)",
+      "validation": "Chrome + APK",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SAWADOGO Hassan Achraf Ammar",
+      "id": "ISS",
+      "sousId": "ISS-10",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Historique",
+      "constat": "L’historique affiche uniquement les coordonnées GPS et pas l’adresse.",
+      "impact": "Localisation peu lisible pour l’utilisateur.",
+      "solution": "Ajouter une adresse/localisation textuelle à partir des coordonnées GPS.",
+      "critere": "Chaque mesure géolocalisée affiche coordonnées + adresse lorsque disponible.",
+      "methodeTest": "Réaliser une mesure puis vérifier les informations de localisation dans l’historique.",
+      "facilite": "2. Moyen",
+      "intitule": "Historique sans adresse (coordonnées seules)",
+      "jours": 1.5,
+      "jours20": 1.8,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "Chrome/APK + GPS",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "TRAORE Abdoulaye / KIEMA François",
+      "id": "IMP",
+      "sousId": "IMP-05",
+      "priorite": "P2",
+      "categorie": "Amélioration",
+      "sousCategorie": "Échelle de score",
+      "constat": "L’échelle de score YELE diffère fortement de celle utilisée par nPerf.",
+      "impact": "Comparaison et interprétation moins intuitives.",
+      "solution": "Définir une échelle de score standardisée et documentée.",
+      "critere": "L’échelle est clairement définie, documentée et identique dans tous les écrans concernés.",
+      "methodeTest": "Comparer plusieurs résultats et vérifier la cohérence du calcul et de l’affichage.",
+      "facilite": "2. Moyen",
+      "intitule": "Échelle de score différente de nPerf",
+      "jours": 2,
+      "jours20": 2.4,
+      "vague": "V5 Dashboard & référentiel",
+      "validation": "Local (3 vues)",
+      "depots": [
+        "mobilefront",
+        "New_web",
+        "mobiletest"
+      ],
+      "push": [
+        "yele-bf/mobilefront",
+        "yele-bf/New_web",
+        "yele-bf/mobiletest"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "TRAORE Abdoulaye / KIEMA François",
+      "id": "IMP",
+      "sousId": "IMP-12",
+      "priorite": "P2",
+      "categorie": "Amélioration",
+      "sousCategorie": "Échelle de score",
+      "constat": "Pas de score global unique 0-100 combinant débit, latence, navigation et streaming, comme le standard international nPerf.",
+      "impact": "Comparaison internationale et historique moins lisibles.",
+      "solution": "Définir et afficher un score global 0-100 unique, identique sur l'app, le dashboard et l'historique.",
+      "critere": "Le score global est calculé et identique sur l'app, le dashboard et l'historique.",
+      "methodeTest": "Comparer plusieurs résultats et vérifier le calcul et l'affichage du score global.",
+      "facilite": "2. Moyen",
+      "intitule": "Pas de score global unique 0-100",
+      "jours": 2,
+      "jours20": 2.4,
+      "vague": "V4 Métriques & score",
+      "validation": "Local (3 vues cohérentes)",
+      "depots": [
+        "mobilefront",
+        "New_web",
+        "mobiletest"
+      ],
+      "push": [
+        "yele-bf/mobilefront",
+        "yele-bf/New_web",
+        "yele-bf/mobiletest"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "Wangraoua Aicha Bénédicte Flore Myriam / SAWADOGO Sutongnoma Saturnin",
+      "id": "ISS",
+      "sousId": "ISS-06",
+      "priorite": "P2",
+      "categorie": "Issue",
+      "sousCategorie": "Débit / Latence",
+      "constat": "Les valeurs minimale, moyenne et maximale du débit et de la latence ne sont pas clairement disponibles.",
+      "impact": "Analyse limitée des performances pendant une mesure.",
+      "solution": "Afficher débit et latence Min / Moy / Max dans le résultat et l’historique.",
+      "critere": "Les six indicateurs sont disponibles lorsqu’ils sont calculables.",
+      "methodeTest": "Réaliser un test puis vérifier les résultats détaillés et l’historique.",
+      "facilite": "2. Moyen",
+      "intitule": "Min/Moy/Max débit & latence absents",
+      "jours": 2.5,
+      "jours20": 3,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "Local (Chrome + dashboard)",
+      "depots": [
+        "mobiletest",
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël",
+      "id": "ISS",
+      "sousId": "ISS-02",
+      "priorite": "P1",
+      "categorie": "Issue",
+      "sousCategorie": "Identification réseau",
+      "constat": "En présence de deux SIM dans un telephone, la SIM 1 est identifiée a chaque fois, alors que le test est effectué avec la SIM 2.",
+      "impact": "Risque d’attribution des mesures au mauvais opérateur/SIM.",
+      "solution": "Identifier automatiquement la SIM effectivement utilisée pour la connexion de données.",
+      "critere": "La SIM/opérateur affiché correspond systématiquement à celui utilisé pour la mesure.",
+      "methodeTest": "Insérer 2 SIM, sélectionner alternativement SIM 1 puis SIM 2 pour les données mobiles et réaliser des tests.",
+      "facilite": "3. Difficile",
+      "intitule": "Double SIM : la SIM 1 est toujours identifiée",
+      "jours": 2,
+      "jours20": 2.4,
+      "vague": "V2 Réseau app (terrain)",
+      "validation": "APK réel double SIM (terrain)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "KOHOUN Damou Daniel / TAMINI Heremave",
+      "id": "ISS",
+      "sousId": "ISS-04",
+      "priorite": "P1",
+      "categorie": "Issue",
+      "sousCategorie": "Serveur",
+      "constat": "L’application affiche « YELE SERVER OUAGADOUGOU », alors qu’aucun serveur correspondant ne semble actuellement être utilisé au Burkina Faso.",
+      "impact": "Risque d’information erronée sur le point de mesure et la latence.",
+      "solution": "Vérifier la liste des serveurs, leur localisation réelle et le mécanisme d’affichage.",
+      "critere": "Le serveur affiché correspond à un serveur réellement configuré et utilisé.",
+      "methodeTest": "Vérifier la configuration serveur puis comparer le serveur affiché avec celui effectivement utilisé.",
+      "facilite": "1. Facile",
+      "intitule": "« YELE SERVER OUAGADOUGOU » affiché sans serveur réel",
+      "jours": 0.5,
+      "jours20": 0.6,
+      "vague": "V1 Quick wins",
+      "validation": "Local (Chrome)",
+      "depots": [
+        "mobilefront",
+        "mobiletest"
+      ],
+      "push": [
+        "yele-bf/mobilefront",
+        "yele-bf/mobiletest"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SAWADOGO Hassan Achraf Ammar",
+      "id": "ISS",
+      "sousId": "ISS-01",
+      "priorite": "P1",
+      "categorie": "Issue",
+      "sousCategorie": "Mesures radio",
+      "constat": "Les valeurs RSRP et RSRQ ne sont pas affichées dans YELE.",
+      "impact": "Impossible d’analyser précisément la puissance et la qualité radio.",
+      "solution": "Ajouter RSRP et RSRQ aux résultats de mesure et à l’historique.",
+      "critere": "Les valeurs RSRP/RSRQ sont affichées pour chaque mesure lorsque disponibles.",
+      "methodeTest": "Réaliser plusieurs tests en 4G/5G et vérifier les valeurs affichées.",
+      "facilite": "3. Difficile",
+      "intitule": "RSRP/RSRQ jamais collectés ni affichés",
+      "jours": 2,
+      "jours20": 2.4,
+      "vague": "V2 Réseau app (terrain)",
+      "validation": "APK réel 4G/5G (terrain)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "SAWADOGO Hassan Achraf Ammar",
+      "id": "ISS",
+      "sousId": "ISS-03",
+      "priorite": "P1",
+      "categorie": "Issue",
+      "sousCategorie": "Identification réseau",
+      "constat": "Des informations de réseau mobile apparaissent alors que le test est effectué via Wi-Fi.",
+      "impact": "Données techniques incohérentes et risque de mauvaise interprétation.",
+      "solution": "Détecter et afficher clairement le type de connexion réellement utilisé : Wi-Fi ou Réseau mobile.",
+      "critere": "Lors d’un test Wi-Fi, aucune information de réseau mobile ne doit être présentée comme réseau utilisé pour le test.",
+      "methodeTest": "Connecter le téléphone au Wi-Fi et réaliser un test.",
+      "facilite": "2. Moyen",
+      "intitule": "Infos réseau mobile affichées pendant un test Wi-Fi",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V2 Réseau app (terrain)",
+      "validation": "APK réel (Wi-Fi vs mobile)",
+      "depots": [
+        "mobilefront"
+      ],
+      "push": [
+        "yele-bf/mobilefront"
+      ]
+    },
+    {
+      "statutClasseur": "Valide",
+      "owner": "ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ",
+      "id": "ISS",
+      "sousId": "ISS-05",
+      "priorite": "P1",
+      "categorie": "Issue",
+      "sousCategorie": "Comparaison",
+      "constat": "Des écarts de X % sont observés entre les résultats YELE et nPerf.",
+      "impact": "Difficulté à déterminer la fiabilité et la cohérence des résultats.",
+      "solution": "Réaliser une campagne comparative dans des conditions identiques et documenter les causes des écarts.",
+      "critere": "Les écarts sont expliqués et restent dans une tolérance préalablement définie.",
+      "methodeTest": "Réaliser des tests avec mêmes opérateur, position, terminal et conditions réseau.",
+      "facilite": "2. Moyen",
+      "intitule": "Écarts YELE vs nPerf non chiffrés",
+      "jours": 1,
+      "jours20": 1.2,
+      "vague": "V3 Mesures & synchronisation",
+      "validation": "Campagne terrain (outillage + export)",
+      "depots": [
+        "mobiletest",
+        "New_web"
+      ],
+      "push": [
+        "yele-bf/mobiletest",
+        "yele-bf/New_web"
+      ]
+    }
+  ]
+}

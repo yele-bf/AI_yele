@@ -1,6 +1,7 @@
 name: yele-guard
 
-# Garde-fou « commit ↔ classeur V11 » : voir CONTRIBUTING.md §2 et §5.
+# Garde-fou « commit ↔ classeur V14 » : voir CONTRIBUTING.md §2 et §5.
+# Référence des items : docs/items-v14.json (27 Sous-ID, classeur du 19.10.2026).
 # Ne tourne que sur les pull requests → l'historique déjà en place n'est pas jugé.
 on:
   pull_request:
@@ -18,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Vérifier le lien commit ↔ classeur V11
+      - name: Vérifier le lien commit ↔ classeur V14
         run: |
           python3 scripts/ci/yele_guard.py \
             "${{ github.event.pull_request.base.sha }}" \

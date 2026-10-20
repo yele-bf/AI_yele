@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""yele_guard — garde-fou « commit ↔ classeur V11 » (CONTRIBUTING §2 et §5).
+"""yele_guard — garde-fou « commit ↔ classeur V14 » (CONTRIBUTING §2 et §5).
 
 Usage :
     python3 scripts/ci/yele_guard.py <base_sha> <head_sha>
-    python3 scripts/ci/yele_guard.py --items docs/items-v11.json \
+    python3 scripts/ci/yele_guard.py --items docs/items-v14.json \
         --registry docs/registre-revisions.md <base_sha> <head_sha>
 
 Contrôles, pour chaque commit **non-merge** de <base_sha>..<head_sha> :
@@ -11,7 +11,7 @@ Contrôles, pour chaque commit **non-merge** de <base_sha>..<head_sha> :
   1. le sujet suit `<type>(<périmètre>): <descriptif>`   (§2)
      type ∈ feat | fix | docs | refactor | perf | test | chore
   2. tout Sous-ID cité (IMP-xx / ISS-xx), dans le sujet ou le corps, existe
-     dans items-v11.json (l'extraction de l'onglet « Completion »)          (§2)
+     dans items-v14.json (l'extraction de l'onglet « Completion »)          (§2)
   3. le corps porte un trailer `Agent: <nom>`                              (§5)
   4. tout Sous-ID cité possède une ligne dans registre-revisions.md        (§5)
 
@@ -27,7 +27,7 @@ import sys
 SUBJECT_RE = re.compile(r"^(feat|fix|docs|refactor|perf|test|chore)(?:\(([^)]+)\))?: \S.*$")
 ID_RE = re.compile(r"\b(?:IMP|ISS)-\d{2}\b")
 AGENT_RE = re.compile(r"^Agent:[ \t]*\S.*$", re.M)
-DEFAULT_ITEMS = os.path.join("docs", "items-v11.json")
+DEFAULT_ITEMS = os.path.join("docs", "items-v14.json")
 DEFAULT_REGISTRY = os.path.join("docs", "registre-revisions.md")
 
 
@@ -103,7 +103,7 @@ def main(argv=None):
         inconnus = sorted(cites - connus)
         if inconnus:
             erreurs.append(
-                f"{court} · Sous-ID absent du classeur V11 → {', '.join(inconnus)}"
+                f"{court} · Sous-ID absent du classeur V14 → {', '.join(inconnus)}"
             )
 
         if not AGENT_RE.search(corps):
@@ -120,7 +120,7 @@ def main(argv=None):
 
     print(f"yele_guard · {nb} commit(s) vérifié(s) sur {args.base[:8]}..{args.head[:8]}")
     if not erreurs:
-        print("OK - lien commit <-> classeur V11 conforme.")
+        print("OK - lien commit <-> classeur V14 conforme.")
         return 0
     print(f"\n{len(erreurs)} problème(s) :\n")
     for e in erreurs:
