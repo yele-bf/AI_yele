@@ -13,7 +13,13 @@ Contrôles, pour chaque commit **non-merge** de <base_sha>..<head_sha> :
   2. tout Sous-ID cité (IMP-xx / ISS-xx), dans le sujet ou le corps, existe
      dans items-v14.json (l'extraction de l'onglet « Completion »)          (§2)
   3. le corps porte un trailer `Agent: <nom>`                              (§5)
-  4. tout Sous-ID cité possède une ligne dans registre-revisions.md        (§5)
+  4. tout Sous-ID cité possède une ligne **datée** dans le tableau
+     d'historique de registre-revisions.md                                 (§5)
+
+Le contrôle 4 ne se contente pas d'une occurrence du Sous-ID dans le fichier :
+le tableau de suivi des 27 items (fin de fichier) contient déjà un `| ISS-xx |`, … |
+pour chaque item et validait donc n'importe quel commit. Seule une ligne
+d'historique `| AAAA-MM-JJ | SOUS-ID | …` atteste d'une contribution réelle.
 
 Code de sortie : 0 si tout passe, 1 dès qu'un contrôle échoue.
 """
@@ -27,6 +33,9 @@ import sys
 SUBJECT_RE = re.compile(r"^(feat|fix|docs|refactor|perf|test|chore)(?:\(([^)]+)\))?: \S.*$")
 ID_RE = re.compile(r"\b(?:IMP|ISS)-\d{2}\b")
 AGENT_RE = re.compile(r"^Agent:[ \t]*\S.*$", re.M)
+HISTORY_ROW_RE = re.compile(
+    r"^\|[ \t]*\d{4}-\d{2}-\d{2}[ \t]*\|[ \t]*(?P<sous_id>(?:IMP|ISS)-\d{2})\b", re.M
+)
 DEFAULT_ITEMS = os.path.join("docs", "items-v14.json")
 DEFAULT_REGISTRY = os.path.join("docs", "registre-revisions.md")
 
@@ -38,6 +47,11 @@ def _sortie_utf8():
             flux.reconfigure(encoding="utf-8", errors="replace")
         except (AttributeError, ValueError):
             pass
+
+
+def sous_ids_historises(registre):
+    """Sous-ID ayant une ligne datée dans le tableau d'historique du registre."""
+    return {m.group("sous_id") for m in HISTORY_ROW_RE.finditer(registre)}
 
 
 def git(*args):
@@ -87,6 +101,7 @@ def main(argv=None):
     if os.path.exists(args.registry):
         with open(args.registry, encoding="utf-8") as f:
             registre = f.read()
+    historises = sous_ids_historises(registre)
 
     erreurs, nb = [], 0
     for sha, sujet, corps in read_commits(args.base, args.head):
@@ -112,10 +127,12 @@ def main(argv=None):
             )
 
         for sous_id in sorted(cites & connus):
-            if not re.search(r"\|[ \t]*" + re.escape(sous_id) + r"[ \t]*\|", registre):
+            if sous_id not in historises:
                 erreurs.append(
-                    f"{court} · {sous_id} n'a pas de ligne dans "
-                    f"{args.registry.replace(os.sep, '/')}"
+                    f"{court} · {sous_id} n'a pas de ligne datée dans l'historique de "
+                    f"{args.registry.replace(os.sep, '/')}\n"
+                    f"           attendu : | AAAA-MM-JJ | {sous_id} | <type> | <Agent> | … |"
+                    f" (le tableau de suivi des 27 items ne compte pas, §5)"
                 )
 
     print(f"yele_guard · {nb} commit(s) vérifié(s) sur {args.base[:8]}..{args.head[:8]}")
