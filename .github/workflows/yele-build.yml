@@ -1,8 +1,11 @@
 name: yele-build
 
 # Contrôle de compilation : voir docs/CONTRIBUTING-equipe.md §1.3 (CI obligatoire).
-# Ne tourne que sur les pull requests, comme le garde-fou.
+# Tourne sur les pull requests et sur push vers main : le commit fusionne est
+# recontrôle, pour qu'une regression arrivee par un merge reste visible.
 on:
+  push:
+    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
 
