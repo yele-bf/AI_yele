@@ -76,9 +76,13 @@
 
 **À faire**
 
-- [ ] `Fatahou980` (NIKIEMA Abdoul Fatahou, Groupe 4) : invitation **en attente**
-      depuis le 20/10/2026. GitHub l'expire au bout de 7 jours ; à relancer
-      depuis *Org → People → Invitations* s'il n'a pas accepté.
+- [x] `Fatahou980` (NIKIEMA Abdoul Fatahou, Groupe 4) : **membre** de
+      l'organisation, permission *write* sur les 4 dépôts (vérifié le
+      26/10/2026). Second compte `Testeur04`, **hors** organisation : ses
+      commits sont signés `TESTEUR04 <abdoulfathounikiema24@gmail.com>`,
+      adresse rattachée à aucun compte GitHub — ils s'affichent donc sans
+      auteur. À corriger côté compte (`Fatahou980` → Settings → Emails),
+      pas côté organisation.
 - [ ] Inviter les **membres de groupe** (11 personnes encore en « N.A. » dans
       l'onglet « Liens perso Github ») dès que leurs comptes GitHub existent.
 - [ ] Renseigner les `CODEOWNERS` de périmètre fin au fur et à mesure que ces
@@ -102,7 +106,7 @@ est reviewer naturel (voir `CODEOWNERS`).
 | 1 | COMPAORE Bobodo Kévin Aymar | `KikaiNoKami` | IMP-01, IMP-04, IMP-08, IMP-11, IMP-13, ISS-09, ISS-11, ISS-12 |
 | 2 | SAWADOGO Hassan Achraf Ammar | `aspinfo10` | ISS-01, ISS-03, ISS-07, ISS-10 |
 | 3 | BAMBA Seydou | `SeydouBamba` | ISS-02, ISS-08 |
-| 4 | NIKIEMA Abdoul Fatahou | `Fatahou980` *(invitation en attente)* | IMP-06 |
+| 4 | NIKIEMA Abdoul Fatahou | `Fatahou980` *(2ᵉ compte : `Testeur04`, hors org)* | IMP-06 |
 | 5 | TRAORE Abdoulaye | `firminosama` | IMP-05, IMP-12 |
 | 6 | ZOUNGRANA Wendkuni Brice Yannick | `yanzo-prime` | IMP-10, ISS-05 |
 | 7 | TAMINI Heremave | `taminiH` | ISS-04 |
