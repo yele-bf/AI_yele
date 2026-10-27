@@ -107,7 +107,7 @@ est reviewer naturel (voir `CODEOWNERS`).
 |---|---|---|---|
 | 1 | COMPAORE Bobodo Kévin Aymar | `KikaiNoKami` | IMP-01, IMP-04, IMP-08, IMP-11, IMP-13, ISS-09, ISS-11, ISS-12 |
 | 2 | SAWADOGO Hassan Achraf Ammar | `aspinfo10` | ISS-01, ISS-03, ISS-07, ISS-10 |
-| 3 | BAMBA Seydou | `SeydouBamba` | ISS-02, ISS-08 |
+| 3 | BAMBA Seydou | `SeydouBamba` | ISS-02 |
 | 4 | NIKIEMA Abdoul Fatahou | `Fatahou980` *(2ᵉ compte : `Testeur04`, hors org)* | IMP-06 |
 | 5 | TRAORE Abdoulaye | `firminosama` | IMP-05, IMP-12 |
 | 6 | ZOUNGRANA Wendkuni Brice Yannick | `yanzo-prime` | IMP-10, ISS-05 |
@@ -213,7 +213,7 @@ Un item passe **Validé** que si les 4 conditions sont réunies :
 |---|---|
 | `v1-quickwins` | V1 Quick wins — IMP-04, IMP-11, IMP-13, IMP-14, ISS-04, ISS-09, ISS-11 |
 | `v2-reseau-app` | V2 Réseau app (terrain) — ISS-01, ISS-02, ISS-03, ISS-07 |
-| `v3-mesures` | V3 Mesures & synchronisation — IMP-01, ISS-05, ISS-06, ISS-08, ISS-10, ISS-12 |
+| `v3-mesures` | V3 Mesures & synchronisation — IMP-01, ISS-05, ISS-06, ISS-10, ISS-12 |
 | `v4-metriques` | V4 Métriques & score — IMP-07, IMP-08, IMP-12 |
 | `v5-referentiel` | V5 Dashboard & référentiel — IMP-05, IMP-06, IMP-09, IMP-10 |
 | `v6-evolutions-lourdes` | V6 Évolutions lourdes — IMP-02, IMP-03, IMP-15 |
