@@ -13,13 +13,23 @@ Contrôles, pour chaque commit **non-merge** de <base_sha>..<head_sha> :
   2. tout Sous-ID cité (IMP-xx / ISS-xx), dans le sujet ou le corps, existe
      dans items-v14.json (l'extraction de l'onglet « Completion »)          (§2)
   3. le corps porte un trailer `Agent: <nom>`                              (§5)
-  4. tout Sous-ID cité possède une ligne **datée** dans le tableau
-     d'historique de registre-revisions.md                                 (§5)
+  4. tout Sous-ID cité **dans le sujet** du commit possède une ligne
+     **datée** dans le tableau d'historique de registre-revisions.md      (§5)
 
 Le contrôle 4 ne se contente pas d'une occurrence du Sous-ID dans le fichier :
 le tableau de suivi des 27 items (fin de fichier) contient déjà un `| ISS-xx |`, … |
 pour chaque item et validait donc n'importe quel commit. Seule une ligne
 d'historique `| AAAA-MM-JJ | SOUS-ID | …` atteste d'une contribution réelle.
+
+Le contrôle 4 ne regarde que le **sujet**, jamais le corps : le sujet déclare
+le périmètre du commit (§2), alors qu'un corps peut citer un Sous-ID pour
+l'expliquer. Une PR de documentation qui nomme l'item qu'elle décrit n'a pas
+à ouvrir de ligne de registre ; les Sous-ID seulement mentionnés dans le
+corps restent vérifiés contre le classeur (contrôle 2).
+
+Corollaire : une **ligne d'exemple datée** (`2026-10-14 | IMP-11 | …
+_(exemple — à remplacer)_`) satisfait ce contrôle — il ne doit en rester
+aucune dans aucun dépôt.
 
 Code de sortie : 0 si tout passe, 1 dès qu'un contrôle échoue.
 """
@@ -126,13 +136,16 @@ def main(argv=None):
                 f"{court} · trailer « Agent: <nom> » manquant dans le corps du commit"
             )
 
-        for sous_id in sorted(cites & connus):
+        # Contrôle 4 : le périmètre déclaré (§2), c'est-à-dire le sujet. Un
+        # Sous-ID seulement mentionné dans le corps n'exige pas de ligne.
+        for sous_id in sorted(set(ID_RE.findall(sujet)) & connus):
             if sous_id not in historises:
                 erreurs.append(
                     f"{court} · {sous_id} n'a pas de ligne datée dans l'historique de "
                     f"{args.registry.replace(os.sep, '/')}\n"
                     f"           attendu : | AAAA-MM-JJ | {sous_id} | <type> | <Agent> | … |"
-                    f" (le tableau de suivi des 27 items ne compte pas, §5)"
+                    f" (Sous-ID cité dans le sujet ; le tableau de suivi des"
+                    f" 27 items ne compte pas, §5)"
                 )
 
     print(f"yele_guard · {nb} commit(s) vérifié(s) sur {args.base[:8]}..{args.head[:8]}")
