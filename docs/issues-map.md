@@ -30,7 +30,7 @@
 | ISS-05 | [#4](https://github.com/yele-bf/mobiletest/issues/4) | `mobiletest` | P1 | ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ | mobiletest, New_web |
 | ISS-06 | [#22](https://github.com/yele-bf/mobilefront/issues/22) | `mobilefront` | P2 | Wangraoua Aicha Bénédicte Flore Myriam / SAWADOGO Sutongnoma Saturnin | mobiletest, mobilefront |
 | ISS-07 | [#23](https://github.com/yele-bf/mobilefront/issues/23) | `mobilefront` | P2 | SAWADOGO Hassan Achraf Ammar | mobilefront |
-| ISS-08 | [#5](https://github.com/yele-bf/mobiletest/issues/5) | `mobiletest` | P2 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | mobiletest, New_web |
+| ISS-08 | [#5](https://github.com/yele-bf/mobiletest/issues/5) — **déclassé le 27/10/2026** | `mobiletest` | P2 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | mobiletest, New_web |
 | ISS-09 | [#24](https://github.com/yele-bf/mobilefront/issues/24) | `mobilefront` | P2 | COMPAORE Bobodo Kévin Aymar | mobilefront |
 | ISS-10 | [#25](https://github.com/yele-bf/mobilefront/issues/25) | `mobilefront` | P2 | SAWADOGO Hassan Achraf Ammar | mobilefront |
 | ISS-11 | [#4](https://github.com/yele-bf/New_web/issues/4) | `New_web` | P2 | COMPAORE Bobodo Kévin Aymar | New_web |
@@ -52,7 +52,7 @@ reste le reviewer naturel de la PR.
 |---|---|---|
 | `KikaiNoKami` | 1 | IMP-01 (#7), IMP-11 (mobiletest#3) |
 | `aspinfo10` | 2 | ISS-01 (#18), ISS-03 (#20), ISS-07 (#23), ISS-10 (#25) |
-| `SeydouBamba` | 3 | ISS-02 (#19), ISS-08 (mobiletest#5) |
+| `SeydouBamba` | 3 | ISS-02 (#19) |
 | `Fatahou980` | 4 | **IMP-06 (#12) — en attente d'acceptation de l'invitation** |
 | `firminosama` | 5 | IMP-05 (#11), IMP-12 (#16) |
 | `yanzo-prime` | 6 | ISS-05 (mobiletest#4), IMP-10 (New_web#3) |

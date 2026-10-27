@@ -34,6 +34,11 @@ mise en place du garde-fou, dont les commits ne respectent pas encore le §2.
 
 ## Suivi des 27 items V14 (tableau d'avancement — **ne vaut pas preuve de contribution**, §5)
 
+> **ISS-08 déclassé le 27/10/2026** — l'item n'est plus suivi : la solution
+> YELE déjà portée par les quatre dépôts couvre mieux l'objectif. Décision
+> d'équipe après démonstration de l'implémentation en local ; le classeur V14
+> reste inchangé.
+
 | Sous-ID | Intitulé (V14) | Owner (classeur) | Statut classeur |
 |---|---|---|---|
 | IMP-01 | Consommation data — P3 | COMPAORE Bobodo Kévin Aymar | Valide |
@@ -46,7 +51,7 @@ mise en place du garde-fou, dont les commits ne respectent pas encore le §2.
 | IMP-03 | Compte utilisateur — P3 | SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam | Valide |
 | IMP-09 | Comparaison — P3 | SANOU Zossoun Aristide Daouda / SANNA Abdoul Salam | Valide |
 | IMP-10 | Dashboard / Carte — P3 | SAWADOGO Wend-kuni Cédric / KOUNANGA Benoit / ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ | Valide |
-| ISS-08 | Synchronisation — P2 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | Valide |
+| ISS-08 | Synchronisation — P2 | BAMBA Seydou / NANEMA Wendinkonté Dimitri Judicaël | **Déclassé** (27/10) |
 | IMP-11 | Données / Export — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
 | ISS-09 | GPS — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
 | ISS-11 | Dashboard / Carte — P2 | COMPAORE Bobodo Kévin Aymar | Valide |
