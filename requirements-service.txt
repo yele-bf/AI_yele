@@ -9,3 +9,4 @@ pyod>=1.1          # ECOD : détection d'anomalies explicable
 fastapi>=0.110
 uvicorn>=0.29
 python-dotenv>=1.0
+joblib>=1.3         # chargement/sauvegarde de yele_ai.joblib (démarrage à froid)
