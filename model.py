@@ -88,13 +88,48 @@ def _canon_operator(name: str) -> str:
     return name.strip()
 
 
+def _fetch_from_api(base_url: str = "http://localhost:8989") -> list[dict]:
+    """Fallback : récupère les résultats via l'API du backend Go."""
+    import urllib.request, json
+    page, all_docs = 1, []
+    while True:
+        url = f"{base_url}/api/dashboard/results?page={page}&limit=200"
+        try:
+            req = urllib.request.Request(url)
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = json.loads(resp.read())
+        except Exception:
+            break
+        rows = data.get("data", [])
+        if not rows:
+            break
+        all_docs.extend(rows)
+        if len(all_docs) >= data.get("total", 0):
+            break
+        page += 1
+    return all_docs
+
+
 def load_dataframe() -> pd.DataFrame:
     """Extraction MongoDB (sans PII) + nettoyage, comme prepare_data.py."""
+    docs = []
+    # Essai MongoDB direct d'abord
     uri = os.environ.get("SPEEDTEST_DATABASE_CONNECTION_STRING")
-    if not uri:
-        raise RuntimeError("SPEEDTEST_DATABASE_CONNECTION_STRING manquante")
-    db = os.environ.get("SPEEDTEST_DATABASE_NAME", "yele_speedtest")
-    docs = list(MongoClient(uri)[db]["speedtest_results"].find({}, PII_PROJECTION))
+    if uri:
+        try:
+            db = os.environ.get("SPEEDTEST_DATABASE_NAME", "yele_speedtest")
+            client = MongoClient(uri, serverSelectionTimeoutMS=15000)
+            client.admin.command("ping")
+            docs = list(client[db]["speedtest_results"].find({}, PII_PROJECTION))
+            client.close()
+        except Exception as e:
+            print(f"[AI] MongoDB direct indisponible ({e}), fallback via API Go")
+    # Fallback via l'API du backend Go si MongoDB direct échoue
+    if not docs:
+        try:
+            docs = _fetch_from_api()
+        except Exception as e:
+            print(f"[AI] API Go inaccessible : {e}")
     df = pd.DataFrame(docs)
     if df.empty:
         return df
