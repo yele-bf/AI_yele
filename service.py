@@ -153,14 +153,16 @@ def anomalies(limit: int = Query(50, ge=1, le=200),
 
 
 @app.get("/ai/forecast")
-def forecast(operator: str, hours: int = Query(48, ge=1, le=168)):
+def forecast(operator: str, hours: int = Query(48, ge=1, le=168),
+             network_type: str = Query("", max_length=8)):
     with _lock:
         ai = _state["ai"]
     if ai is None:
         return {"forecast": [], "mlReady": False}
     return {
         "operator": operator,
-        "forecast": ai.forecast(operator, hours=hours),
+        "forecast": ai.forecast(operator, hours=hours,
+                                network_type=network_type or None),
         "mlReady": ai.ml_ready,
     }
 
