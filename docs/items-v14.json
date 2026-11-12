@@ -310,24 +310,22 @@
       "priorite": "P2",
       "categorie": "Amélioration",
       "sousCategorie": "Données / Export",
-      "constat": "Aucun export des données brutes (CSV/JSON) depuis le dashboard ou l'API.",
+      "constat": "Aucun export des résultats depuis l'écran de fin de mesure ou l'onglet historique de l'APK.",
       "impact": "Gêne la campagne comparative nPerf vs YELE et les livrables ARCEP.",
-      "solution": "Ajouter un export des mesures au format CSV/JSON depuis le dashboard ou l'API.",
-      "critere": "Un bouton exporte les mesures filtrées au format CSV/JSON.",
-      "methodeTest": "Exporter un jeu de mesures et contrôler le contenu du fichier.",
+      "solution": "Ajouter un export des résultats depuis l'écran de fin de mesure ou l'onglet historique au format CSV/PDF/PNG/Excel.",
+      "critere": "Depuis l'écran de fin de mesure ou l'onglet historique, un bouton permet d'exporter le résultat au format CSV/PDF/PNG/Excel.",
+      "methodeTest": "Réaliser un test, ouvrir l'export depuis l'écran de fin et depuis l'historique, générer CSV/PDF/PNG/Excel et contrôler les fichiers.",
       "facilite": "1. Facile",
-      "intitule": "Pas d'export des données (CSV/JSON)",
+      "intitule": "Export des résultats sur l'APK depuis l'écran de fin de mesure ou depuis l'onglet historique",
       "jours": 1,
       "jours20": 1.2,
       "vague": "V1 Quick wins",
-      "validation": "Local (API + dashboard)",
+      "validation": "APK réel",
       "depots": [
-        "mobiletest",
-        "New_web"
+        "mobilefront"
       ],
       "push": [
-        "yele-bf/mobiletest",
-        "yele-bf/New_web"
+        "yele-bf/mobilefront"
       ]
     },
     {
@@ -708,34 +706,6 @@
       ],
       "push": [
         "yele-bf/mobilefront"
-      ]
-    },
-    {
-      "statutClasseur": "Valide",
-      "owner": "ZOUNGRANA Wendkuni Brice Yannick / OUEDRAOGO AZIZ",
-      "id": "ISS",
-      "sousId": "ISS-05",
-      "priorite": "P1",
-      "categorie": "Issue",
-      "sousCategorie": "Comparaison",
-      "constat": "Des écarts de X % sont observés entre les résultats YELE et nPerf.",
-      "impact": "Difficulté à déterminer la fiabilité et la cohérence des résultats.",
-      "solution": "Réaliser une campagne comparative dans des conditions identiques et documenter les causes des écarts.",
-      "critere": "Les écarts sont expliqués et restent dans une tolérance préalablement définie.",
-      "methodeTest": "Réaliser des tests avec mêmes opérateur, position, terminal et conditions réseau.",
-      "facilite": "2. Moyen",
-      "intitule": "Écarts YELE vs nPerf non chiffrés",
-      "jours": 1,
-      "jours20": 1.2,
-      "vague": "V3 Mesures & synchronisation",
-      "validation": "Campagne terrain (outillage + export)",
-      "depots": [
-        "mobiletest",
-        "New_web"
-      ],
-      "push": [
-        "yele-bf/mobiletest",
-        "yele-bf/New_web"
       ]
     }
   ]
