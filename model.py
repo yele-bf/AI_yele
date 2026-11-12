@@ -65,15 +65,19 @@ PII_PROJECTION = {
 
 # Fusion des libellés d'opérateur en doublon (mêmes règles que prepare_data.py).
 # Sans cela, "ONATEL (…" et "ONATEL (…, PTT)" sont traités comme deux opérateurs.
+# Libellés canoniques = référentiel ARCEP, comme partout dans le projet
+# (décision du 13/11 — le dashboard n'a plus à normaliser à l'affichage).
 OPERATOR_ALIASES = [
-    ("onatel", "ONATEL / Telmob"),
-    ("office national des telecommunications", "ONATEL / Telmob"),
-    ("orange burkina", "Orange Burkina Faso"),
+    ("office national des telecommunications", "Moov Africa SA"),
+    ("onatel", "Moov Africa SA"),
+    ("telmob", "Moov Africa SA"),
+    ("moov", "Moov Africa SA"),
+    ("orange burkina", "Orange BF SA"),
+    ("orange", "Orange BF SA"),
+    ("telecel", "Telecel Faso SA"),
     ("anptic", "ANPTIC"),
     ("agence nationale de promotion des tic", "ANPTIC"),
     ("autorite de regulation des communications", "ARCEP Burkina"),
-    ("telecel", "Telecel Faso"),
-    ("moov", "Moov Africa"),
 ]
 
 
@@ -130,7 +134,7 @@ def load_dataframe() -> pd.DataFrame:
             docs = _fetch_from_api()
         except Exception as e:
             print(f"[AI] API Go inaccessible : {e}")
-    df = pd.DataFrame(docs)
+    df = pd.DataFrame(_normalize_docs(docs))
     if df.empty:
         return df
 
@@ -148,7 +152,51 @@ def load_dataframe() -> pd.DataFrame:
         df[col] = df.get(col, "").fillna("Inconnu").replace("", "Inconnu")
     # Fusion des opérateurs en doublon (ONATEL ×2, ANPTIC/ARCEP en toutes lettres…).
     df["operator"] = df["operator"].map(_canon_operator)
+
+    # Analyse MOBILE STRICTEMENT (Option B, décision du 13/11) : le service IA
+    # ne retient que les tests cellulaires 2G/3G/4G/5G (les tests WiFi/fixe
+    # sortent du périmètre — la prévision et le niveau multivarié restent
+    # donc hors service tant que le mobile n'atteint pas MIN_SAMPLES_ML).
+    df = df[df["network_type"].str.match(r"^(2G|3G|4G|5G|mobile)\+?$", case=False, na=False)]
+
+    # Colonnes descriptives pour le tableau des anomalies (dashboard) : elles
+    # ne servent PAS aux modèles, on les porte juste jusqu'à la sortie JSON.
+    df["tech"] = df.get("cellular_tech", "").fillna("")
+    df.loc[~df["tech"].str.match(r"^[2-5]G\+?$", case=False, na=False), "tech"] = df["network_type"]
+    df["device"] = df.get("device_model", "").fillna("")
+    df["location"] = df.get("location", "").fillna("")
+    for c in ["latitude", "longitude"]:
+        df[c] = pd.to_numeric(df.get(c), errors="coerce")
+    # Signal consolidé, mêmes règles que le backend (ISS-01) : RSRP 4G puis
+    # repli NR (5G SA) puis signal_dbm historique ; RSRQ 4G puis repli NR.
+    for src, dst in [("signal_rsrp", "rsrp"), ("signal_rsrq", "rsrq")]:
+        s = pd.to_numeric(df.get(src), errors="coerce")
+        nr = pd.to_numeric(df.get("signal_nr_" + src.split("_")[1]), errors="coerce")
+        s = s.fillna(nr)
+        if dst == "rsrp":
+            s = s.fillna(pd.to_numeric(df.get("signal_dbm"), errors="coerce")
+                         .where(df["network_type"].str.match(r"^[2-5]G", case=False, na=False)))
+        df[dst] = s
     return df.reset_index(drop=True)
+
+
+# L'API Go renvoie du camelCase (json), Mongo du snake_case (bson) : on ramène
+# tout à un schéma commun avant de construire le DataFrame.
+_DOC_KEY_ALIASES = {
+    "download": "dl", "upload": "ul",
+    "networkType": "network_type", "cellularTech": "cellular_tech",
+    "deviceModel": "device_model", "simOperator": "sim_operator",
+    "signalRsrp": "signal_rsrp", "signalNrRsrp": "signal_nr_rsrp",
+    "signalRsrq": "signal_rsrq", "signalNrRsrq": "signal_nr_rsrq",
+}
+
+
+def _normalize_docs(docs: list[dict]) -> list[dict]:
+    for d in docs:
+        for src, dst in _DOC_KEY_ALIASES.items():
+            if src in d and dst not in d:
+                d[dst] = d[src]
+    return docs
 
 
 class YeleAI:
@@ -322,8 +370,17 @@ class YeleAI:
                 "timestamp": row.timestamp.isoformat(),
                 "operator": row.operator,
                 "networkType": row.network_type,
+                "tech": getattr(row, "tech", "") or row.network_type,
                 "download": round(float(row.dl), 2),
+                "upload": round(float(row.ul), 2) if pd.notna(getattr(row, "ul", None)) else None,
                 "ping": round(float(row.ping), 1) if pd.notna(row.ping) else None,
+                "jitter": round(float(row.jitter), 1) if pd.notna(getattr(row, "jitter", None)) else None,
+                "rsrp": int(row.rsrp) if pd.notna(getattr(row, "rsrp", None)) else None,
+                "rsrq": int(row.rsrq) if pd.notna(getattr(row, "rsrq", None)) else None,
+                "device": getattr(row, "device", "") or None,
+                "location": getattr(row, "location", "") or None,
+                "lat": float(row.latitude) if pd.notna(getattr(row, "latitude", None)) else None,
+                "lng": float(row.longitude) if pd.notna(getattr(row, "longitude", None)) else None,
                 "severity": int(min(severity[i], 100)),
                 "reasons": reasons[i],
             })
@@ -332,12 +389,16 @@ class YeleAI:
 
     # ── Prévision ────────────────────────────────────────────────────────────
 
-    def forecast(self, operator: str, hours: int = 48) -> list[dict]:
+    def forecast(self, operator: str, hours: int = 48,
+                 network_type: str | None = None) -> list[dict]:
         """Débit prédit heure par heure pour un opérateur (contexte futur)."""
         if not self.ml_ready or operator not in self.operators:
             return []
-        # Réseau le plus courant pour cet opérateur (contexte type)
-        net = self.networks[0] if self.networks else "Inconnu"
+        # Technologie demandée (filtre du dashboard) sinon la plus courante
+        # pour cet opérateur (contexte type).
+        net = (network_type or "").upper()
+        if not net or net not in self.networks:
+            net = self.networks[0] if self.networks else "Inconnu"
         now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
         rows = []
         for h in range(hours):
