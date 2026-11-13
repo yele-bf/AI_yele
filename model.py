@@ -32,7 +32,15 @@ def _make_regressor():
         # ignore_pretraining_limits : autorise nos features même si le contexte
         # est petit ; TabPFN reste déterministe (pas de random_state requis).
         return TabPFNRegressor(ignore_pretraining_limits=True)
-    return HistGradientBoostingRegressor(random_state=42)
+    # early_stopping=False : avec ~50-100 mesures, l'arrêt anticipé (auto = ON
+    # sous 10 000 échantillons) coupait l'entraînement dès la première
+    # itération — le modèle prédisait alors la moyenne, quel que soit
+    # l'opérateur ou la technologie (constat du 13/11). max_iter reste
+    # modéré pour ne pas surapprendre ce petit jeu.
+    return HistGradientBoostingRegressor(
+        random_state=42, early_stopping=False, max_iter=150,
+        min_samples_leaf=5,
+    )
 
 
 # ECOD : détecteur d'anomalies sans paramètre, déterministe et EXPLICABLE
