@@ -177,15 +177,28 @@ def load_dataframe() -> pd.DataFrame:
         df[c] = pd.to_numeric(df.get(c), errors="coerce")
     # Signal consolidé, mêmes règles que le backend (ISS-01) : RSRP 4G puis
     # repli NR (5G SA) puis signal_dbm historique ; RSRQ 4G puis repli NR.
+    # pd.DataFrame.get renvoie None (scalaire) quand la colonne est absente —
+    # pd.to_numeric(None) rend alors un numpy.float64 et le chaînage .fillna
+    # plante (« numpy.float64 object has no attribute fillna »). C'est arrivé
+    # en production dès qu'aucune mesure ne portait de signal (suppression des
+    # mesures de test du 13/11). _num_col garantit une Series de la bonne
+    # longueur, NaN partout quand aucun test ne porte la valeur.
     for src, dst in [("signal_rsrp", "rsrp"), ("signal_rsrq", "rsrq")]:
-        s = pd.to_numeric(df.get(src), errors="coerce")
-        nr = pd.to_numeric(df.get("signal_nr_" + src.split("_")[1]), errors="coerce")
+        s = _num_col(df, src)
+        nr = _num_col(df, "signal_nr_" + src.split("_")[1])
         s = s.fillna(nr)
         if dst == "rsrp":
-            s = s.fillna(pd.to_numeric(df.get("signal_dbm"), errors="coerce")
+            s = s.fillna(_num_col(df, "signal_dbm")
                          .where(df["network_type"].str.match(r"^[2-5]G", case=False, na=False)))
         df[dst] = s
     return df.reset_index(drop=True)
+
+
+def _num_col(df, col):
+    """Colonne numérique en Series (jamais un scalaire), NaN si absente."""
+    if col in df.columns:
+        return pd.to_numeric(df[col], errors="coerce")
+    return pd.Series(np.nan, index=df.index)
 
 
 # L'API Go renvoie du camelCase (json), Mongo du snake_case (bson) : on ramène
